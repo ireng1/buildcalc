@@ -1,0 +1,304 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Segoe UI", sans-serif;
+    background: linear-gradient(135deg, #0f172a, #1e293b);
+    min-height: 100vh;
+    color: white;
+    padding: 30px;
+}
+
+header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header p {
+    color: #cbd5e1;
+    font-size: 1.1rem;
+
+    #projectName {
+        width: 300px;
+        max-width: 100%;
+        padding: 12px;
+        margin: 15px auto;
+        display: block;
+        border: none;
+        border-radius: 10px;
+    }
+}
+
+main {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 25px;
+}
+
+.card {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 20px;
+    margin: 15px auto;
+    border-radius: 15px;
+    max-width: 700px;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+}
+
+.card h2 {
+    margin-bottom: 20px;
+    border-left: 4px solid #22c55e;
+    padding-left: 10px;
+
+}
+
+input,
+select {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 12px;
+    border: none;
+    border-radius: 10px;
+    outline: none;
+    background: #e2e8f0;
+}
+
+button,
+.start-btn {
+    background: linear-gradient(45deg, #22c55e, #16a34a);
+    color: white;
+    padding: 12px 18px;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.2s;
+}
+
+button:hover,
+.start-btn:hover {
+    transform: scale(1.05);
+}
+
+.result-box {
+    background: rgba(255, 255, 255, 0.08);
+    color: #ffffff;
+    padding: 15px;
+    margin-top: 15px;
+    border-radius: 12px;
+    border-left: 4px solid #22c55e;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    line-height: 1.8;
+}
+
+.result-item {
+    margin-bottom: 10px;
+}
+
+#summary {
+    min-height: 150px;
+    color: #cbd5e1;
+    line-height: 1.8;
+}
+
+footer {
+    text-align: center;
+    margin-top: 30px;
+    color: #94a3b8;
+    padding: 20px;
+}
+
+@media(max-width:768px) {
+
+    body {
+        padding: 15px;
+    }
+
+    header h1 {
+        font-size: 2rem;
+    }
+
+}
+
+body.landing {
+    background: #0f172a;
+    color: white;
+    font-family: Arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    text-align: center;
+}
+
+.hero {
+    max-width: 600px;
+}
+
+.hero h1 {
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    opacity: 0.8;
+    margin-bottom: 20px;
+}
+
+.hero ul {
+    text-align: left;
+    margin: 20px auto;
+    width: fit-content;
+}
+
+.start-btn {
+    display: inline-block;
+    padding: 12px 25px;
+    background: #22c55e;
+    color: white;
+    text-decoration: none;
+    border-radius: 10px;
+    margin-top: 20px;
+}
+
+.hero hr {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+}
+
+.hero ul {
+    list-style: none;
+    padding: 0;
+}
+
+.hero li {
+    margin: 8px 0;
+    opacity: 0.9;
+}
+
+.navbar {
+    position: sticky;
+    top: 0;
+    background: #0b1220;
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.navbar a {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.navbar a:hover {
+    background: #22c55e;
+    transform: scale(1.05);
+}
+
+.top-btn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #22c55e;
+    color: white;
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+.project-card {
+
+    background: white;
+    padding: 15px;
+    margin: 10px auto;
+    max-width: 500px;
+    border-radius: 10px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+}
+
+.pro-btn {
+    background: gold;
+    color: black;
+    padding: 10px 15px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.pro-btn {
+    background: gold;
+    color: black;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    margin: 0;
+    background: #0f172a;
+    color: white;
+}
+
+.hero-img {
+    width: 100%;
+    max-width: 500px;
+    border-radius: 15px;
+    margin-bottom: 20px;
+}
+
+.logo {
+    font-size: 22px;
+    font-weight: 800;
+    text-align: center;
+    padding: 15px;
+    color: #22c55e;
+    letter-spacing: 1px;
+}
+
+.contact-box {
+    text-align: center;
+    margin: 30px auto;
+    padding: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.contact-box a {
+    color: #22c55e;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.contact-box a:hover {
+    text-decoration: underline;
+}
+
+.result-box p {
+    font-weight: 500;
+    margin: 8px 0;
+}
+
+.result-box h3 {
+    color: #22c55e;
+    margin-top: 0;
+}

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <h1>📊 Projects Dashboard</h1>
+
+    <div id="projectsList"></div>
+
+    <script>
+        function loadProjects() {
+
+            let projects =
+                JSON.parse(localStorage.getItem("projects")) || [];
+
+            let container =
+                document.getElementById("projectsList");
+
+            container.innerHTML = "";
+
+            projects.forEach((p, index) => {
+
+                container.innerHTML +=
+
+                    <div class="project-card">
+
+                        <h3>${p.name}</h3>
+
+                        <p>Tile: ${p.tileCost}</p>
+
+                        <p>Paint: ${p.paintCost}</p>
+
+                        <p>Concrete: ${p.concreteCost}</p>
+
+                        <small>${p.date}</small>
+
+                    </div>
+
+                    ;
+
+            });
+
+        }
+
+        loadProjects();
+    </script>
+
+</body>
+
+</html>

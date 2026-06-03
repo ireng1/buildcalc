@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BuildCalc - Construction Assistant</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <button onclick="upgradeToPro()" class="pro-btn">
+            💳 Upgrade Pro
+        </button>
+        <a href="#tiles">🧱 Tiles</a>
+        <a href="#paint">🎨 Paint</a>
+        <a href="#wire">⚡ Wire</a>
+        <a href="#concrete">🧱 Concrete</a>
+        <a href="#solar">☀️ Solar</a>
+
+    </nav>
+
+    <header>
+
+        <h1>🏗️ BuildCalc</h1>
+        <p>Smart Construction Calculator for Homeowners, Engineers and Contractors </p>
+        <input id="projectName" placeholder="Project Name">
+
+        <p>
+            Construction & Renovation Assistant
+        </p>
+
+    </header>
+
+    <main>
+
+        <section class="card" id="tiles">
+
+            <h2>🧱 Tile Calculator</h2>
+
+            <input id="roomLength" placeholder=" Room Length (m)">
+            <input id="roomWidth" placeholder="Room Width (m)">
+            <input id="tileLength" placeholder="Tile Length (cm)">
+            <input id="tileWidth" placeholder="Tile Width (cm)">
+            <input id="tilesPerBox" placeholder="Tiles Per Box">
+            <input id="boxPrice" placeholder="Box Price">
+
+            <select id="wastePercent">
+                <option value="5">5% Waste</option>
+                <option value="10">10% Waste</option>
+                <option value="15">15% Waste</option>
+            </select>
+
+            <div id="tileResult" class="result-box">
+                Results will appear here
+            </div>
+
+            <button onclick="calculateTiles()">
+                Calculate
+            </button>
+
+        </section>
+
+        <section class="card" id="paint">
+
+            <h2>🎨 Paint Calculator</h2>
+
+            <input id="paintLength" placeholder="Room Length (m)">
+            <input id="paintWidth" placeholder="Room Width (m)">
+            <input id="paintHeight" placeholder="Room Height (m)">
+            <input id="doors" placeholder="Number of Doors">
+            <input id="windows" placeholder="Number of Windows">
+            <input id="paintCoverage" placeholder="Coverage (m² per liter)">
+            <input id="paintPrice" placeholder="Paint Price Per Liter">
+
+            <button onclick="calculatePaint()">
+                Calculate
+            </button>
+
+            <div id="paintResult" class="result-box">
+                Results will appear here
+            </div>
+
+        </section>
+
+        <section class="card" id="wire">
+
+            <h2>⚡ Wire Calculator</h2>
+
+            <input id="voltage" placeholder="Voltage (V)">
+            <input id="current" placeholder="Current (A)">
+            <input id="cableLength" placeholder="Cable Length (m)">
+
+            <select id="material">
+                <option value="copper">Copper</option>
+                <option value="aluminum">Aluminum</option>
+            </select>
+
+            <button onclick="calculateWire()">
+                Calculate
+            </button>
+
+            <div id="wireResult" class="result-box">
+                Results will appear here
+            </div>
+
+        </section>
+
+        <section class="card" id="concrete">
+
+            <h2>🧱 Concrete Calculator</h2>
+
+            <input id="concreteLength" placeholder="Length (m)">
+            <input id="concreteWidth" placeholder="Width (m)">
+            <input id="concreteThickness" placeholder="Thickness (m)">
+
+            <button onclick="calculateConcrete()">
+                Calculate
+            </button>
+
+            <div id="concreteResult" class="result-box">
+
+                Results will appear here
+
+            </div>
+
+        </section>
+
+        <section class="card" id="solar">
+
+            <h2>☀️ Solar Calculator</h2>
+
+            <input id="dailyLoad" placeholder="Daily Consumption (Wh)">
+            <input id="sunHours" placeholder="Sun Hours per day">
+            <input id="panelPower" placeholder="Panel Power (W)">
+
+            <button onclick="calculateSolar()">
+                Calculate
+            </button>
+
+            <div id="solarResult" class="result-box">Results will appear here</div>
+
+        </section>
+
+        <section class="card" id="steel">
+
+            <h2>🧱 Steel (Rebar) Calculator</h2>
+
+            <input id="slabLength" placeholder="Slab Length (m)">
+            <input id="slabWidth" placeholder="Slab Width (m)">
+            <input id="spacing" placeholder="Bar Spacing (cm)">
+            <input id="barLength" placeholder="Bar Length (m)">
+
+            <button onclick="calculateSteel()">
+                Calculate
+            </button>
+
+            <div id="steelResult" class="result-box">Results will appear here</div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>📋 Project Summary</h2>
+            <button onclick="saveProject()">Save Project</button>
+            <button onclick="downloadPDF()">Download PDF</button>
+
+            <div id="summary">
+
+                <p>Tile Cost: 0</p>
+                <p>Paint Cost: 0</p>
+                <p>Total Cost: 0</p>
+
+            </div>
+
+        </section>
+
+    </main>
+
+    <script src="script.js"></script>
+
+    <footer>
+        <p> BuildCalc © 2026 </p>
+    </footer>
+
+    <a href="#" class="top-btn">⬆️ Top</a>
+    <a href="dashboard.html">📊 Dashboard</a>
+    <a href="#" class="pro-btn">💳 Upgrade to Pro</a>
+    <div class="contact-box">
+
+        <p>📩 Contact Developer</p>
+
+        <a href="https://www.instagram.com/m.o_t3?igsh=MXYweHlrMjhxbWdpNQ==" target="_blank">
+            📷 Instagram: m.o_t3
+        </a>
+
+    </div>
+
+</body>
+
+</html>
