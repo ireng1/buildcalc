@@ -41,16 +41,16 @@
 
     <main>
 
-        <section class="card" id="tiles">
+        <section class="card calculator-card" id="tiles">
 
             <h2>🧱 Tile Calculator</h2>
 
-            <input id="roomLength" placeholder=" Room Length (m)">
-            <input id="roomWidth" placeholder="Room Width (m)">
-            <input id="tileLength" placeholder="Tile Length (cm)">
-            <input id="tileWidth" placeholder="Tile Width (cm)">
-            <input id="tilesPerBox" placeholder="Tiles Per Box">
-            <input id="boxPrice" placeholder="Box Price">
+            <input type="number" id="roomLength" placeholder="Room Length (m)">
+            <input type="roomWidth" id="roomWidth" placeholder="Room Width (m)">
+            <input type="tilelength" id="tileLength" placeholder="Tile Length (cm)">
+            <input type="tileWidth" id="tileWidth" placeholder="Tile Width (cm)">
+            <input type="tilesPerBox" id="tilesPerBox" placeholder="Tiles Per Box">
+            <input type="boxPrice" id="boxPrice" placeholder="Box Price">
 
             <select id="wastePercent">
                 <option value="5">5% Waste</option>
@@ -68,17 +68,17 @@
 
         </section>
 
-        <section class="card" id="paint">
+        <section class="card" calculator-card id="paint">
 
             <h2>🎨 Paint Calculator</h2>
 
-            <input id="paintLength" placeholder="Room Length (m)">
-            <input id="paintWidth" placeholder="Room Width (m)">
-            <input id="paintHeight" placeholder="Room Height (m)">
-            <input id="doors" placeholder="Number of Doors">
-            <input id="windows" placeholder="Number of Windows">
-            <input id="paintCoverage" placeholder="Coverage (m² per liter)">
-            <input id="paintPrice" placeholder="Paint Price Per Liter">
+            <input type="paintLength" id="paintLength" placeholder="Room Length (m)">
+            <input type="paintWidth" id="paintWidth" placeholder="Room Width (m)">
+            <input type="paintHeight" id="paintHeight" placeholder="Room Height (m)">
+            <input type="doors" id="doors" placeholder="Number of Doors">
+            <input type="windows" id="windows" placeholder="Number of Windows">
+            <input type="paintCoverage" id="paintCoverage" placeholder="Coverage (m² per liter)">
+            <input type="paintPrice" id="paintPrice" placeholder="Paint Price Per Liter">
 
             <button onclick="calculatePaint()">
                 Calculate
@@ -90,13 +90,13 @@
 
         </section>
 
-        <section class="card" id="wire">
+        <section class="card" calculator-card id="wire">
 
             <h2>⚡ Wire Calculator</h2>
 
-            <input id="voltage" placeholder="Voltage (V)">
-            <input id="current" placeholder="Current (A)">
-            <input id="cableLength" placeholder="Cable Length (m)">
+            <input type="voltage" id="voltage" placeholder="Voltage (V)">
+            <input type="current" id="current" placeholder="Current (A)">
+            <input type="cableLength" id="cableLength" placeholder="Cable Length (m)">
 
             <select id="material">
                 <option value="copper">Copper</option>
@@ -113,13 +113,13 @@
 
         </section>
 
-        <section class="card" id="concrete">
+        <section class="card" calculator-card id="concrete">
 
             <h2>🧱 Concrete Calculator</h2>
 
-            <input id="concreteLength" placeholder="Length (m)">
-            <input id="concreteWidth" placeholder="Width (m)">
-            <input id="concreteThickness" placeholder="Thickness (m)">
+            <input type="concreteLength" id="concreteLength" placeholder="Length (m)">
+            <input type="concreteWidth" id="concreteWidth" placeholder="Width (m)">
+            <input type="concreteThickness" id="concreteThickness" placeholder="Thickness (m)">
 
             <button onclick="calculateConcrete()">
                 Calculate
@@ -133,13 +133,13 @@
 
         </section>
 
-        <section class="card" id="solar">
+        <section class="card" calculator-card id="solar">
 
             <h2>☀️ Solar Calculator</h2>
 
-            <input id="dailyLoad" placeholder="Daily Consumption (Wh)">
-            <input id="sunHours" placeholder="Sun Hours per day">
-            <input id="panelPower" placeholder="Panel Power (W)">
+            <input type="dailyLoad" id="dailyLoad" placeholder="Daily Consumption (Wh)">
+            <input type="sunHours" id="sunHours" placeholder="Sun Hours per day">
+            <input type="panelPower" id="panelPower" placeholder="Panel Power (W)">
 
             <button onclick="calculateSolar()">
                 Calculate
@@ -149,14 +149,14 @@
 
         </section>
 
-        <section class="card" id="steel">
+        <section class="card" calculator-card id="steel">
 
             <h2>🧱 Steel (Rebar) Calculator</h2>
 
-            <input id="slabLength" placeholder="Slab Length (m)">
-            <input id="slabWidth" placeholder="Slab Width (m)">
-            <input id="spacing" placeholder="Bar Spacing (cm)">
-            <input id="barLength" placeholder="Bar Length (m)">
+            <input type="slabLength" id="slabLength" placeholder="Slab Length (m)">
+            <input type="slabWidth" id="slabWidth" placeholder="Slab Width (m)">
+            <input type="spacing" id="spacing" placeholder="Bar Spacing (cm)">
+            <input type="barLength" id="barLength" placeholder="Bar Length (m)">
 
             <button onclick="calculateSteel()">
                 Calculate
@@ -170,6 +170,7 @@
 
             <h2>📋 Project Summary</h2>
             <button onclick="saveProject()">Save Project</button>
+            <button onclick="clearAllData()">🗑 Clear All Data</button>
             <button onclick="downloadPDF()">Download PDF</button>
 
             <div id="summary">

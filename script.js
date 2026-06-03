@@ -560,3 +560,126 @@ function downloadPDF() {
 
     // باقي كود PDF
 }
+document.addEventListener("DOMContentLoaded", () => {
+
+    const inputs = document.querySelectorAll("input");
+
+    inputs.forEach((input, index) => {
+
+        input.addEventListener("keydown", function (e) {
+
+            // ENTER
+            if (e.key === "Enter") {
+
+                e.preventDefault();
+
+                const nextInput = inputs[index + 1];
+
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+
+            // ARROW DOWN
+            if (e.key === "ArrowDown") {
+
+                e.preventDefault();
+
+                const nextInput = inputs[index + 1];
+
+                if (nextInput) {
+                    nextInput.focus();
+                }
+            }
+
+            // ARROW UP
+            if (e.key === "ArrowUp") {
+
+                e.preventDefault();
+
+                const prevInput = inputs[index - 1];
+
+                if (prevInput) {
+                    prevInput.focus();
+                }
+            }
+
+        });
+
+    });
+
+});
+document.querySelectorAll(".calculator-card").forEach(card => {
+
+    const inputs = card.querySelectorAll("input");
+
+    const button = card.querySelector("button");
+
+    inputs.forEach((input, index) => {
+
+        input.addEventListener("keydown", function (e) {
+
+            if (e.key === "Enter") {
+
+                e.preventDefault();
+
+                if (index === inputs.length - 1) {
+
+                    if (button) {
+                        button.click();
+                    }
+
+                }
+
+            }
+
+        });
+
+    });
+
+});
+// =====================
+// AUTO SAVE
+// =====================
+
+document.addEventListener("DOMContentLoaded", () => {
+
+    const inputs = document.querySelectorAll("input, select");
+
+    // تحميل البيانات المحفوظة
+    inputs.forEach(input => {
+
+        const savedValue = localStorage.getItem(input.id);
+
+        if (savedValue !== null) {
+            input.value = savedValue;
+        }
+
+    });
+
+    // حفظ تلقائي عند التغيير
+    inputs.forEach(input => {
+
+        input.addEventListener("input", () => {
+
+            localStorage.setItem(
+                input.id,
+                input.value
+            );
+
+        });
+
+    });
+
+});
+function clearAllData() {
+
+    if (confirm("Delete all saved data?")) {
+
+        localStorage.clear();
+
+        location.reload();
+
+    }
+
+}
