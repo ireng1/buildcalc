@@ -11,35 +11,65 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
+    <script src="https://cdn.sheetjs.com/xlsx-latest/package/dist/xlsx.full.min.js"></script>
+
 </head>
 
 <body>
 
+
     <nav class="navbar">
+        <div class="nav-logo">
+
+            <span class="logo-mark">⬢</span>
+
+            <span>BuildCalc</span>
+
+        </div>
+        <button class="menu-btn" onclick="toggleMenu()">
+
+            ☰
+
+        </button>
         <button onclick="upgradeToPro()" class="pro-btn">
             💳 Upgrade Pro
         </button>
-        <a href="#tiles">🧱 Tiles</a>
-        <a href="#paint">🎨 Paint</a>
-        <a href="#wire">⚡ Wire</a>
-        <a href="#concrete">🧱 Concrete</a>
-        <a href="#solar">☀️ Solar</a>
+        <button id="langBtn" onclick="toggleLanguage()">
+
+            🌐 العربية
+
+        </button>
+        <div id="navLinks">
+
+
+            <a href="#tiles">🧱 Tiles</a>
+            <a href="#paint">🎨 Paint</a>
+            <a href="#wire">⚡ Wire</a>
+            <a href="#concrete">🧱 Concrete</a>
+            <a href="#solar">☀️ Solar</a>
+            <a href="#battery">🔋 Battery</a>
+            <a href="about.html">ℹ️ About</a>
+            <a href="feedback.html">💬 Feedback </a>
+            <a href="pricing.html">💎 Pricing </a>
+            <a href="features.html">🚀 Features </a>
+            <a href="faq.html">❓ FAQ </a>
+            <a href="#threephase">⚡ 3-Phase</a>
+            <a href="#motor">⚙️ Motor</a>
+            <button onclick="toggleTheme()">
+                🌙 Theme
+            </button>
+            <a href="pro.html">
+                💎 Pro
+            </a>
+
+        </div>
+
 
     </nav>
 
-    <header>
-
-        <h1>🏗️ BuildCalc</h1>
-        <p>Smart Construction Calculator for Homeowners, Engineers and Contractors </p>
-        <input id="projectName" placeholder="Project Name">
-
-        <p>
-            Construction & Renovation Assistant
-        </p>
-
-    </header>
 
     <main>
+
 
         <section class="card calculator-card" id="tiles">
 
@@ -61,6 +91,10 @@
             <div id="tileResult" class="result-box">
                 Results will appear here
             </div>
+
+            <button onclick="copyTileResult()">
+                📋 Copy Result
+            </button>
 
             <button onclick="calculateTiles()">
                 Calculate
@@ -164,14 +198,97 @@
 
             <div id="steelResult" class="result-box">Results will appear here</div>
 
+
+        </section>
+
+        <section class="card" id="battery">
+
+            <h2>🔋 Battery Calculator</h2>
+
+            <input type="number" id="batteryLoad" placeholder="Daily Consumption (Wh)">
+
+            <input type="number" id="batteryVoltage" placeholder="Battery Voltage (V)">
+
+            <input type="number" id="backupDays" placeholder="Backup Days">
+
+            <button onclick="calculateBattery()">
+                Calculate
+            </button>
+
+            <div id="batteryResult" class="result-box">
+                Results will appear here
+            </div>
+
+        </section>
+
+        <section class="card" id="threephase">
+
+            <h2>⚡ Three Phase Calculator</h2>
+
+            <input id="tpVoltage" placeholder="Line Voltage (V)">
+
+            <input id="tpCurrent" placeholder="Current (A)">
+
+            <input id="tpPF" value="0.8" placeholder="Power Factor">
+
+            <button onclick="calculateThreePhase()">
+                Calculate
+            </button>
+
+            <div id="threePhaseResult" class="result-box">
+
+                Results will appear here
+
+            </div>
+
+        </section>
+
+        <section class="card" id="motor">
+
+            <h2>⚙️ Motor Current Calculator</h2>
+
+            <input id="motorPower" placeholder="Motor Power (kW)">
+
+            <input id="motorVoltage" placeholder="Voltage (V)">
+
+            <input id="motorPF" placeholder="Power Factor">
+
+            <input id="motorEff" placeholder="Efficiency (%)">
+
+            <button onclick="calculateMotor()">
+                Calculate
+            </button>
+
+            <div id="motorResult" class="result-box">
+
+                Results will appear here
+
+            </div>
+
         </section>
 
         <section class="card">
 
+            <input id="projectName" placeholder="Project Name">
+
             <h2>📋 Project Summary</h2>
+
+            <select id="currency">
+
+                <option value="USD">
+                    USD
+                </option>
+
+                <option value="IQD">
+                    IQD
+                </option>
+
+            </select>
             <button onclick="saveProject()">Save Project</button>
             <button onclick="clearAllData()">🗑 Clear All Data</button>
             <button onclick="downloadPDF()">Download PDF</button>
+            <button onclick="shareProject()">📤 Share</button>
+            <button onclick="exportExcel()">📊 Export Excel</button>
 
             <div id="summary">
 
@@ -183,9 +300,15 @@
 
         </section>
 
+
+
     </main>
 
     <script src="script.js"></script>
+
+    <div id="visitorCounter">
+        👥 Visitors: 0
+    </div>
 
     <footer>
         <p> BuildCalc © 2026 </p>

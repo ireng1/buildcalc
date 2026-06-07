@@ -1,54 +1,132 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
-    <title>Dashboard</title>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BuildCalc Dashboard</title>
+
     <link rel="stylesheet" href="style.css">
+
 </head>
 
 <body>
 
+    <button onclick="deleteAllProjects()">
+
+        🗑 Delete All Projects
+
+    </button>
+
     <h1>📊 Projects Dashboard</h1>
+
+    <a href="app.html" class="top-btn">
+        ⬅ Back To BuildCalc
+    </a>
+
+    <br><br>
+
+    <input type="text" id="searchProject" placeholder="Search Project..." onkeyup="loadProjects()">
+
+    <br><br>
 
     <div id="projectsList"></div>
 
+    <div id="stats">
+        Loading...
+    </div>
+
     <script>
+
         function loadProjects() {
 
             let projects =
-                JSON.parse(localStorage.getItem("projects")) || [];
+                JSON.parse(
+                    localStorage.getItem("projects")
+                ) || [];
+
+            let searchText =
+                document.getElementById(
+                    "searchProject"
+                ).value.toLowerCase();
+
+            projects =
+                projects.filter(project =>
+                    project.name
+                        .toLowerCase()
+                        .includes(searchText)
+                );
 
             let container =
                 document.getElementById("projectsList");
 
             container.innerHTML = "";
 
+            if (projects.length === 0) {
+
+                container.innerHTML =
+                    "<p>No saved projects yet.</p>";
+
+                return;
+            }
+
             projects.forEach((p, index) => {
 
-                container.innerHTML +=
+
+                container.innerHTML += `
 
                     <div class="project-card">
 
                         <h3>${p.name}</h3>
 
-                        <p>Tile: ${p.tileCost}</p>
+                        <p>Tile Cost: ${p.tileCost || 0}</p>
 
-                        <p>Paint: ${p.paintCost}</p>
+                        <p>Paint Cost: ${p.paintCost || 0}</p>
 
-                        <p>Concrete: ${p.concreteCost}</p>
+                        <p>Concrete Cost: ${p.concreteCost || 0}</p>
 
-                        <small>${p.date}</small>
+                        <small>${p.date || ""}</small>
+
+                        <br></br>
+                        <button onclick="deleteProject(${index})">
+                            Delete
+                        </button>
 
                     </div>
 
-                    ;
+                    `;
 
             });
 
         }
 
         loadProjects();
+
+        function deleteProject(index) {
+
+            let projects =
+                JSON.parse(
+                    localStorage.getItem("projects")
+                ) || [];
+
+            projects.splice(index, 1);
+
+            localStorage.setItem(
+                "projects",
+                JSON.stringify(projects)
+            );
+
+            location.reload();
+
+        }
+
     </script>
+
+    <script src="dashboard.js"></script>
+
 
 </body>
 

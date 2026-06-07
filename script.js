@@ -246,6 +246,9 @@ function calculateWire() {
 }
 function updateSummary() {
 
+    let currency =
+        document.getElementById("currency").value;
+
     let projectName =
         document.getElementById("projectName").value || "Untitled";
 
@@ -258,13 +261,13 @@ function updateSummary() {
 
         <h3>${projectName}</h3>
 
-        <p>Tile Cost: ${tileCost.toFixed(2)}</p>
+        <p>Tile Cost: ${tileCost.toFixed(2)} ${currency}</p>
 
-        <p>Paint Cost: ${paintCost.toFixed(2)}</p>
+        <p>Paint Cost: ${paintCost.toFixed(2)} ${currency}</p>
 
-        <p>Concrete Cost: ${concreteCost.toFixed(2)}</p>
+        <p>Concrete Cost: ${concreteCost.toFixed(2)} ${currency}</p>
 
-        <h2>Total Cost: ${total.toFixed(2)}</h2>
+        <h2>Total Cost: ${total.toFixed(2)} ${currency}</h2>
 
         `;
 }
@@ -683,3 +686,435 @@ function clearAllData() {
     }
 
 }
+const currencySelect =
+    document.getElementById("currency");
+
+if (currencySelect) {
+
+    currencySelect.addEventListener(
+        "change",
+        updateSummary
+    );
+
+}
+function calculateBattery() {
+
+    let load =
+        parseFloat(
+            document.getElementById(
+                "batteryLoad"
+            ).value
+        );
+
+    let voltage =
+        parseFloat(
+            document.getElementById(
+                "batteryVoltage"
+            ).value
+        );
+
+    let days =
+        parseFloat(
+            document.getElementById(
+                "backupDays"
+            ).value
+        );
+
+    if (
+        isNaN(load) ||
+        isNaN(voltage) ||
+        isNaN(days)
+    ) {
+        alert("Please fill all battery fields");
+        return;
+    }
+
+    let totalEnergy =
+        load * days;
+
+    let capacityAh =
+        totalEnergy / voltage;
+
+    let batteries =
+        Math.ceil(capacityAh / 200);
+
+    document.getElementById(
+        "batteryResult"
+    ).innerHTML = ` 
+
+        <h3>Battery Results</h3>
+
+        <p>
+        Required Capacity:
+        ${capacityAh.toFixed(2)} Ah
+        </p>
+
+        <p>
+        Estimated Batteries:
+        ${batteries}
+        </p>
+
+    `;
+}
+function calculateThreePhase() {
+
+    let voltage =
+        parseFloat(
+            document.getElementById(
+                "tpVoltage"
+            ).value
+        );
+
+    let current =
+        parseFloat(
+            document.getElementById(
+                "tpCurrent"
+            ).value
+        );
+
+    let pf =
+        parseFloat(
+            document.getElementById(
+                "tpPF"
+            ).value
+        );
+
+    if (
+        isNaN(voltage) ||
+        isNaN(current) ||
+        isNaN(pf)
+    ) {
+        alert(
+            "Please fill all fields"
+        );
+        return;
+    }
+
+    let powerKW =
+        (1.732 *
+            voltage *
+            current *
+            pf) / 1000;
+
+    document.getElementById(
+        "threePhaseResult"
+    ).innerHTML = `
+
+        <h3>Three Phase Results</h3>
+
+        <p>
+        Voltage:
+        ${voltage.toFixed(2)} V
+        </p>
+
+        <p>
+        Current:
+        ${current.toFixed(2)} A
+        </p>
+
+        <p>
+        Power Factor:
+        ${pf}
+        </p>
+
+        <p>
+        Power:
+        ${powerKW.toFixed(2)} kW
+        </p>
+
+    `;
+}
+function calculateMotor() {
+
+    let power =
+        parseFloat(
+            document.getElementById(
+                "motorPower"
+            ).value
+        );
+
+    let voltage =
+        parseFloat(
+            document.getElementById(
+                "motorVoltage"
+            ).value
+        );
+
+    let pf =
+        parseFloat(
+            document.getElementById(
+                "motorPF"
+            ).value
+        );
+
+    let eff =
+        parseFloat(
+            document.getElementById(
+                "motorEff"
+            ).value
+        );
+
+    if (
+        isNaN(power) ||
+        isNaN(voltage) ||
+        isNaN(pf) ||
+        isNaN(eff)
+    ) {
+        alert(
+            "Please fill all fields"
+        );
+        return;
+    }
+
+    let current =
+
+        (power * 1000) /
+
+        (
+            1.732 *
+            voltage *
+            pf *
+            (eff / 100)
+        );
+
+    document.getElementById(
+        "motorResult"
+    ).innerHTML = `
+
+        <h3>Motor Results</h3>
+
+        <p>
+        Motor Current:
+        ${current.toFixed(2)} A
+        </p>
+
+        `;
+}
+function copyTileResult() {
+
+    let text =
+        document.getElementById(
+            "tileResult"
+        ).innerText;
+
+    navigator.clipboard.writeText(text);
+
+    alert(
+        "Result Copied ✔️"
+    );
+
+}
+async function shareProject() {
+
+    let text =
+        document.getElementById(
+            "summary"
+        ).innerText;
+
+    if (navigator.share) {
+
+        await navigator.share({
+
+            title: "BuildCalc",
+
+            text: text
+
+        });
+
+    }
+
+}
+function toggleTheme() {
+
+    document.body.classList.toggle(
+        "light-mode"
+    );
+
+    let isLight =
+        document.body.classList.contains(
+            "light-mode"
+        );
+
+    localStorage.setItem(
+        "theme",
+        isLight ? "light" : "dark"
+    );
+
+}
+window.addEventListener(
+    "load",
+    function () {
+
+        let theme =
+            localStorage.getItem(
+                "theme"
+            );
+
+        if (theme === "light") {
+
+            document.body.classList.add(
+                "light-mode"
+            );
+
+        }
+
+    }
+);
+function exportExcel() {
+
+    let data = [
+
+        {
+            Project:
+                document.getElementById(
+                    "projectName"
+                ).value,
+
+            TileCost:
+                tileCost,
+
+            PaintCost:
+                paintCost,
+
+            ConcreteCost:
+                concreteCost,
+
+            Total:
+                tileCost +
+                paintCost +
+                concreteCost
+        }
+
+    ];
+
+    let worksheet =
+        XLSX.utils.json_to_sheet(
+            data
+        );
+
+    let workbook =
+        XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        "BuildCalc"
+    );
+
+    XLSX.writeFile(
+        workbook,
+        "BuildCalc_Report.xlsx"
+    );
+
+}
+document
+    .querySelectorAll("input")
+    .forEach(input => {
+
+        input.addEventListener(
+            "input",
+            function () {
+
+                document
+                    .querySelectorAll(
+                        ".result-box"
+                    )
+                    .forEach(box => {
+
+                        box.innerHTML =
+                            "Press Calculate";
+
+                    });
+
+            }
+        );
+
+    });
+function toggleMenu() {
+
+    document
+        .getElementById(
+            "navLinks"
+        )
+        .classList.toggle(
+            "show"
+        );
+
+}
+
+
+let currentLanguage = "en";
+
+function toggleLanguage() {
+
+    if (currentLanguage === "en") {
+
+        currentLanguage = "ar";
+
+        document.body.dir = "rtl";
+
+        document.documentElement.lang = "ar";
+
+        document.getElementById(
+            "langBtn"
+        ).innerText =
+            "🌐 English";
+
+        document.title =
+            "حاسبة البناء";
+        localStorage.setItem(
+            "language",
+            "ar"
+        );
+        localStorage.setItem(
+            "language",
+            "en"
+        );
+
+    }
+
+    else {
+
+        currentLanguage = "en";
+
+        document.body.dir = "ltr";
+
+        document.documentElement.lang = "en";
+
+        document.getElementById(
+            "langBtn"
+        ).innerText =
+            "🌐 العربية";
+
+        document.title =
+            "BuildCalc";
+
+        localStorage.setItem(
+            "language",
+            "ar"
+        );
+        localStorage.setItem(
+            "language",
+            "en"
+        );
+
+    }
+
+}
+window.addEventListener(
+    "load",
+    function () {
+
+        let savedLanguage =
+            localStorage.getItem(
+                "language"
+            );
+
+        if (savedLanguage === "ar") {
+
+            toggleLanguage();
+
+        }
+
+    }
+);
